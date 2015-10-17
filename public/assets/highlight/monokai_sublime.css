@@ -7,9 +7,11 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .hljs {
     display: block;
     overflow-x: auto;
-    padding: 0.5em;
+    padding: 1.5em 1.75em;
     background: #23241f;
     -webkit-text-size-adjust: none;
+    font-family: monospace;
+    font-size: 1em;
 }
 
 .hljs,
@@ -49,7 +51,8 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 }
 
 .hljs-link_url {
-    font-size: 80%;
+    /*font-size: 80%;*/
+    font-size: 1em;
 }
 
 .hljs-strong,
