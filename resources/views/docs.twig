@@ -1,0 +1,20 @@
+{% extends 'base' %}
+
+{% block styles %}
+<link rel="stylesheet" href="assets/jsonview/jquery.jsonview.css">
+<link rel="stylesheet" href="assets/highlight/monokai_sublime.css">
+<link rel="stylesheet" href="assets/custom.css">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="col-md-3">
+        <div class="bs-sidebar hidden-print affix well" role="complementary">
+            {%- block sidebar -%}{%- endblock -%}
+        </div>
+    </div>
+    <div class="col-md-9" role="main">
+        {%- include 'content.twig' -%}
+    </div>
+</div>
+{% endblock %}

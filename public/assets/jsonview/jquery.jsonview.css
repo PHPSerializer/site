@@ -18,6 +18,11 @@
     color: blue;
 }
 
+.jsonview a
+{
+    font-weight: normal;
+}
+
 .jsonview .num {
     color: blue;
 }

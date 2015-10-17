@@ -1,0 +1,58 @@
+{% extends 'base' %}
+
+{% block styles %}
+<style>
+body {
+    padding-top: 20px !important;
+}
+
+#hero h1
+{
+    border:0;
+    margin-bottom: 16px;
+    font-size: 52px;
+    font-weight: 600;
+    padding-bottom: 24px;
+
+}
+#hero
+{
+    padding-top: 64px;
+    background-color: #435595;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    height: 364px;
+    display: block;
+    overflow: hidden;
+    color: white;
+}
+.purple
+{
+    background-image: linear-gradient(to bottom, rgba(67, 85, 149, 100) 0, rgba(67, 85, 149, 0.8) 100%), url(images/2560x1440.jpg);
+    background-position: -100px 0px;
+    background-size: 120% auto;
+    background-repeat: no-repeat;
+}
+
+#hero .btn{
+    margin:16px;
+    width:196px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div id="hero" class="jumbotron purple text-center">
+    <div class="container">
+        <h1>Serialization for Web Artisans</h1>
+        <p>Build beautiful APIs, transform data into XML, Arrays or JSON format with ease.</p>
+
+        <button class="btn btn-lg">Read the docs</button> <button class="btn btn-lg">Download</button>
+    </div>
+</div>
+
+{% endblock %}

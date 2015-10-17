@@ -8,6 +8,11 @@ class Controller extends BaseController
 {
     public function indexAction()
     {
-        return view('base');
+        return view('pages/home');
+    }
+
+    public function documentationAction()
+    {
+        return view('pages/documentation');
     }
 }

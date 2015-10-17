@@ -12,3 +12,4 @@
 */
 
 $app->get('/', ['as' => 'homepage', 'uses' => 'Controller@indexAction']);
+$app->get('/docs', ['as' => 'homepage', 'uses' => 'Controller@documentationAction']);
