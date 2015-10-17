@@ -1,3 +1,24 @@
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
+
+<h3>Framework Integration</h3>
+{{
+paneled_tabs
+(
+{
+"symfony2" : "Symfony 2",
+"laravel5" : "Laravel 5",
+"lumen": "Lumen"
+},
+{
+"symfony2" : "<ul><li>Bulbasaur</li><li>Charmander</li><li>Squirtle</li></ul>",
+"laravel5" : "<ul><li>Chikorita</li><li>Cyndaquil</li><li>Totodile</li></ul>",
+"lumen": "<ul><li>Treecko</li><li>Torchic</li><li>Mudkip</li></ul>"
+},
+"symfony2",
+""
+)
+}}
 
 
 <h3>Migration</h3>
