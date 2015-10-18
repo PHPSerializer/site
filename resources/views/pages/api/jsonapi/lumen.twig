@@ -1,0 +1,40 @@
+<h2>Lumen Installation</h2>
+<p>Use Composer to install the package:</p>
+<pre><code class="bash">$ php composer require nilportugues/laravel5-json-api</code></pre>
+
+<hr>
+
+
+<h2>Configuration</h2>
+<h3>Add the package to the Service Provider</h3>
+
+<p>Open up <strong>bootstrap/app.php</strong> and add the following lines before the <strong>return $app;</strong> statement:</p>
+
+<pre><code class="php">// bootstrap/app.php
+
+$app->register(
+  "NilPortugues\Laravel5\JsonApiSerializer\Laravel5JsonApiSerializerServiceProvider"
+);
+$app->configure('jsonapi');
+
+$app->withFacades(); //And enable facades!
+
+return $app;
+</code></pre>
+
+<hr>
+
+<h2>Register the mapping file</h2>
+
+<p>Create a jsonapi.php file in config/ directory. This file should return an array returning all the class mappings.</p>
+
+<pre><code class="php">// config/jsonapi.php
+
+return [
+    //We will be filling this array in a moment
+];
+</code></pre>
+
+<hr>
+
+<h2>Creating a mapping</h2>

@@ -1,0 +1,51 @@
+{% extends 'pages/api/index' %}
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
+{%- block title -%}
+    JSON Transformer | PHPSerializer.com
+{%- endblock -%}
+
+
+{%- block content -%}
+<h1>JSON Transformer</h1>
+
+
+<p>Depending on your project, use one of the following installation options for:</p>
+
+<ul>
+    <li>PHP library</li>
+    <li>Symfony 2 Bundle</li>
+    <li>Laravel 5 Package</li>
+    <li>Lumen Package</li>
+</ul>
+
+<br>
+
+{% set raw_php %}{% include 'pages/api/json/php' %}{% endset %}
+{% set symfony2 %}{% include 'pages/api/json/symfony2' %}{% endset %}
+{% set laravel5 %}{% include 'pages/api/json/laravel5' %}{% endset %}
+{% set lumen %}{% include 'pages/api/json/lumen' %}{% endset %}
+
+<div class="row-fluid">
+    {{
+    paneled_tabs(
+        {
+            "php" : "PHP library",
+            "symfony2" : "Symfony 2 Bundle",
+            "laravel5" : "Laravel 5 Package",
+            "lumen" : "Lumen Package"
+        },
+        {
+            "php" : raw_php,
+            "symfony2" : symfony2,
+            "laravel5": laravel5,
+            "lumen": lumen
+        },
+        "php",
+        ""
+    )
+    }}
+</div>
+
+
+{% endblock %}

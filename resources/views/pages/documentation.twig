@@ -2,49 +2,18 @@
 
 
 {%- block title -%}
-    PHPSerializer.com - Documentation
+    Documentation | PHPSerializer.com
 {%- endblock -%}
 
 {%- block sidebar -%}
-<h4 xmlns="http://www.w3.org/1999/html">Quick Start</h4>
-<ul class="nav bs-sidenav">
-    <li><a href="/docs#introduction">Introduction</a></li>
-    <li><a href="/docs#features">Features</a></li>
-    <li><a href="/docs#requirements">Requirements</a></li>
-    <li><a href="/docs#installation">Installation</a></li>
-</ul>
-
-<h4>Serializers</h4>
-<ul class="nav bs-sidenav">
-    <li><a href="/docs/serializers#json">JSON</a></li>
-    <li><a href="/docs/serializers#xml">XML</a></li>
-    <li><a href="/docs/serializers#yaml">YAML</a></li>
-</ul>
-
-<h4>API Transformers</h4>
-<ul class="nav bs-sidenav">
-    <li><a href="/docs/api/hal-json">HAL+JSON</a></li>
-    <li><a href="/docs/api/json-api-v1">JSON API 1.0</a></li>
-    <li><a href="/docs/api/json">JSON</a></li>
-    <li><a href="/docs/api/jsend">JSend</a></li>
-</ul>
-
-<h4>Other Transformers</h4>
-<ul class="nav bs-sidenav">
-    <li><a href="/docs/transformers#array">Object to Array</a></li>
-    <li><a href="/docs/transformers#flat-array">Object to Flat Array</a></li>
-    <li><a href="/docs/transformers#xml">Object to XML</a></li>
-    <li><a href="/docs/transformers#json">Object to JSON</a></li>
-    <li><a href="/docs/transformers#yaml">Object to YAML</a></li>
-</ul>
-
+{%- include 'pages/documentation_sidebar'-%}
 {%- endblock -%}
 
 
 {%- block content -%}
 <h1 id="introduction">Quick Start</h1>
 
-<h2 >Introduction</h2>
+<h2>Introduction</h2>
 
 <h3>PHP: serialize() and unserialize()</h3>
 <p>These native functions rely on having the serialized classes loaded and available at runtime and tie your unserialization process to a PHP platform.</p>

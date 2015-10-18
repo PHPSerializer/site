@@ -1,15 +1,57 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
 
-$app->get('/', ['as' => 'homepage', 'uses' => 'Controller@indexAction']);
-$app->get('/docs', ['as' => 'homepage', 'uses' => 'Controller@documentationAction']);
+$app->get(
+    '/',
+    ['as' => 'homepage', 'uses' => 'Controller@indexAction']
+);
+
+$app->get(
+    '/docs',
+    ['as' => 'homepage', 'uses' => 'Controller@documentationAction']
+);
+
+$app->group(['prefix' => 'docs/api'], function($app) {
+    $app->get(
+        'hal-json',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\ApiTransformersController@haljsonAction']
+    );
+
+    $app->get(
+        'json-api-v1',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\ApiTransformersController@jsonapiAction']
+    );
+
+    $app->get(
+        'json',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\ApiTransformersController@jsonAction']
+    );
+
+    $app->get(
+        'jsend',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\ApiTransformersController@jsendAction']
+    );
+});
+
+
+$app->group(['prefix' => 'docs/serializers'], function($app) {
+
+
+    $app->get(
+        'json',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\SerializersController@jsonAction']
+    );
+
+
+    $app->get(
+        'xml',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\SerializersController@xmlAction']
+    );
+
+
+    $app->get(
+        'yaml',
+        ['as' => 'homepage', 'uses' => '\App\Http\Controllers\SerializersController@yamlAction']
+    );
+
+});

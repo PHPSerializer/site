@@ -135,3 +135,8 @@ pre
 .docs-container {
     margin-bottom: 100px;
 }
+
+.docs-container hr{
+    margin: 42px 0;
+    border:0
+}
