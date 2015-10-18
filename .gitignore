@@ -1,3 +1,5 @@
 /vendor
+/bin
 .env
 .idea
+.php_cs.cache

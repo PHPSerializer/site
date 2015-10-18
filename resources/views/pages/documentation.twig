@@ -6,33 +6,103 @@
 {%- endblock -%}
 
 {%- block sidebar -%}
-<h4>Quick Start</h4>
+<h4 xmlns="http://www.w3.org/1999/html">Quick Start</h4>
 <ul class="nav bs-sidenav">
-    <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#installation">Installation</a></li>
+    <li><a href="/docs#introduction">Introduction</a></li>
+    <li><a href="/docs#features">Features</a></li>
+    <li><a href="/docs#requirements">Requirements</a></li>
+    <li><a href="/docs#installation">Installation</a></li>
 </ul>
 
 <h4>Serializers</h4>
 <ul class="nav bs-sidenav">
-    <li><a href="">JSON</a></li>
-    <li><a href="">XML</a></li>
+    <li><a href="/docs/serializers#json">JSON</a></li>
+    <li><a href="/docs/serializers#xml">XML</a></li>
+    <li><a href="/docs/serializers#yaml">YAML</a></li>
 </ul>
 
 <h4>API Transformers</h4>
 <ul class="nav bs-sidenav">
-    <li><a href="">HAL+JSON</a></li>
-    <li><a href="">JSON API 1.0</a></li>
-    <li><a href="">JSON</a></li>
-    <li><a href="">JSend</a></li>
+    <li><a href="/docs/api/hal-json">HAL+JSON</a></li>
+    <li><a href="/docs/api/json-api-v1">JSON API 1.0</a></li>
+    <li><a href="/docs/api/json">JSON</a></li>
+    <li><a href="/docs/api/jsend">JSend</a></li>
 </ul>
 
 <h4>Other Transformers</h4>
 <ul class="nav bs-sidenav">
-    <li><a href="">Object to Array</a></li>
-    <li><a href="">Object to Flat Array</a></li>
-    <li><a href="">Object to XML</a></li>
-    <li><a href="">Object to JSON</a></li>
-    <li><a href="">Object to YAML</a></li>
+    <li><a href="/docs/transformers#array">Object to Array</a></li>
+    <li><a href="/docs/transformers#flat-array">Object to Flat Array</a></li>
+    <li><a href="/docs/transformers#xml">Object to XML</a></li>
+    <li><a href="/docs/transformers#json">Object to JSON</a></li>
+    <li><a href="/docs/transformers#yaml">Object to YAML</a></li>
+</ul>
+
+{%- endblock -%}
+
+
+{%- block content -%}
+<h1 id="introduction">Quick Start</h1>
+
+<h2 >Introduction</h2>
+
+<h3>PHP: serialize() and unserialize()</h3>
+<p>These native functions rely on having the serialized classes loaded and available at runtime and tie your unserialization process to a PHP platform.</p>
+
+<p>If the serialized string contains a reference to a class that cannot be instantiated (e.g. class was renamed, moved namespace, removed or changed to abstract) PHP will immediately die with a fatal error.</p>
+
+<p>Is this a problem? Yes it is. Serialized data is now <strong>unusable</strong>.</p>
+
+<p><strong>Using the PHP Serializer libraries will result in outputting a message that is better readable and understandable for humans, but more importantly, it's platform-independent.</strong></p>
+
+
+<hr>
+
+<h2 id="features">Features</h2>
+
+<ul>
+    <li>Serialize to <strong>JSON</strong>, <strong>XML</strong> and <strong>YAML</strong> formats.</li>
+    <li>Serializes <strong>exact copies</strong> of the object provided:
+        <ul>
+            <li>All object properties, public, protected and private are serialized.</li>
+            <li>All properties from the current object, <strong>including inherited properties</strong> are read and serialized.</li>
+        </ul>
+    </li>
+    <li>Handles <strong>internal class serialization</strong> for objects such as <strong>SplFixedArray</strong> or classes <strong>implementing Traversable</strong>.</li>
+    <li>Basic Data Transformers provided to convert objects to different output formats.</li>
+    <li>Production-ready.</li>
+    <li><strong>Extensible:</strong> easily write your out Serializer format or data Transformers.</li>
+</ul>
+
+
+<hr>
+
+<h2>Requirements</h2>
+<p>All PHP Serializer libraries require at least PHP version 5.5 or above.</p>
+
+<p>It's been tested on PHP 7.0 and the PHP nightly builds.</p>
+
+<hr>
+
+<h2 id="installation">Installation</h2>
+
+<p>This library can be easily installed via <a href="https://getcomposer.org/">Composer</a>. If you're not using Composer, please download:</p>
+
+<pre><code class="bash">$ curl -sS https://getcomposer.org/installer | php</code></pre>
+
+<p>Now, in a command console execute the following command to download the latest stable version of the PHP Serializer:</p>
+
+<pre><code class="bash">$ php composer.phar install nilportugues/serializer</code></pre>
+
+And you're done.
+
+
+<h2 id="installation">Documentation</h2>
+
+<ul>
+    <li><a href="/docs/serializers">Serializers</a></li>
+    <li><a href="/docs/api-transformers">API Transformers</a></li>
+    <li><a href="/docs/transformers">Other Transformers</a></li>
 </ul>
 
 {%- endblock -%}

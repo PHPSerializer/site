@@ -7,14 +7,17 @@
  */
 
 /* By default it's not affixed in mobile views, so undo that */
-.bs-sidebar.affix {
-    position: static;
-}
 
-.bs-sidebar.well {
-    padding: 0;
-    max-height: 90%;
-    overflow-y: auto;
+@media (max-width: 991px) {
+    .bs-sidebar.affix {
+        position: static;
+    }
+
+    .bs-sidebar.well {
+        padding: 0;
+        max-height: 90%;
+        overflow-y: auto;
+    }
 }
 
 /* First level of nav */
@@ -69,8 +72,7 @@
         padding-top: 30px;
     }
     .bs-sidebar.affix {
-        position: fixed; /* Undo the static from mobile first approach */
-        top: 92px;
+        position: relative; /* Undo the static from mobile first approach */
     }
     .bs-sidebar.affix-bottom {
         position: absolute; /* Undo the static from mobile first approach */
@@ -122,3 +124,14 @@
 
 
 
+pre
+{
+    margin:20px 0;
+    padding:0;
+    border: 0
+}
+
+
+.docs-container {
+    margin-bottom: 100px;
+}

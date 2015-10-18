@@ -1,1 +1,54 @@
 {% extends 'landing' %}
+
+{% block title %}
+PHPSerializer.com - A Serializer for Web Artisans
+{% endblock %}
+
+{%- block body -%}
+    <div id="hero" class="jumbotron purple text-center">
+        <div class="container">
+            <h1>Serialization for PHP Developers</h1>
+            <span class="small">A collection of serializer libraries that will enabled you build:</span>
+            <p>Beautiful APIs and transformers to XML, YAML or JSON formats.</p>
+
+            <a href="/docs" class="btn btn-outline btn-lg">Read the docs</a>
+            <a href="/download" class="btn btn-outline btn-lg">Download</a>
+        </div>
+    </div>
+
+    <div class="container landing-container text-center">
+        <h2>Framework Support</h2>
+        <div class="row-fluid">
+            <div class="col-md-12">
+                <p>The PHP Serializer libraries seamlessly integrate with the most popular PHP Frameworks, both full-stack or micro-framework.</p>
+            </div>
+            <div class="row-fluid text-center">
+                <div class="col-xs-6 col-md-3"><h3 class="text-muted">Symfony2</h3><img class="img-rounded" src="/images/symfony-logo.png" style="max-width: 176px"></div>
+                <div class="col-xs-6 col-md-3"><h3 class="text-muted">Silex</h3><img class="img-rounded" src="/images/silex-logo.png" style="max-width: 176px"></div>
+                <div class="col-xs-6 col-md-3"><h3 class="text-muted">Laravel 5</h3><img class="img-rounded" src="/images/laravel-logo.png" style="max-width: 176px"></div>
+                <div class="col-xs-6 col-md-3"><h3 class="text-muted">Lumen</h3><img class="img-rounded" src="/images/lumen-logo.png" style="max-width: 176px"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container landing-container landing-container-last">
+        <div class="row-fluid">
+            <div class="col-xs-12 col-md-6">
+                <h2 class="text-center">Code Quality</h2>
+                <ul>
+                    <li>Full respect of modern coding standards: libraries comply with PSR-1, PSR-2, PSR-4 and PSR-7.</li>
+                    <li>Fully tested using PHPUnit.</li>
+                    <li>High performant code written with performance in mind.</li>
+                    <li>New releases follow semantic versioning since day one.</li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6  text-center">
+                <h2>Open Source</h2>
+                <p>The PHP Serializer libraries are open sourced. <br>All of them are hosted, developed, and maintained on GitHub.</p>
+            </div>
+        </div>
+    </div>
+{%- endblock -%}

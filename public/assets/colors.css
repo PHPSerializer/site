@@ -2,11 +2,13 @@ body {
     padding-top: 70px;
     font-family: "Lato", sans-serif !important;
     background-color: white;
+    font-size: 16px;
 }
 
 body > div.container {
     min-height: 400px;
 }
+
 
 footer {
     margin-top:32px;
@@ -14,7 +16,8 @@ footer {
     padding:16px 0;
     text-align: center;
     font-weight: 200;
-    background-color: #ddd;
+    background-color: #eee;
+
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
@@ -130,17 +133,29 @@ a i.fa{
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-bottom: 16px;
-    color: #303030; font-weight: 500;
+    color: #303030; font-weight: 600;
     padding-bottom: 6px;
 }
 
 h1
 {
-    font-weight: 600;
+    font-weight: 900;
     font-size:48px;
     padding-bottom: 12px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 48px;
+}
+
+h2
+{
+    font-size:36px;
+    font-weight: 800;
+}
+
+h3
+{
+    font-weight: 700;
+    color: #9d9d9d;
 }
 
 
@@ -170,6 +185,25 @@ h1
 }
 .bs-sidebar h4:first-child
 {
-    margin-top: 34px;
+    margin-top: 54px;
 }
 .bs-sidenav li {margin-left: 0}
+
+
+a .logo
+{
+    display: block;
+    width: 225px;
+    font-size:24px;
+    color:white
+}
+
+a:hover .logo
+{
+    color:white
+}
+
+.affix
+{
+    font-size:14px
+}

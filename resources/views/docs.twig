@@ -7,14 +7,14 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container docs-container">
     <div class="col-md-3">
         <div class="bs-sidebar hidden-print affix well" role="complementary">
             {%- block sidebar -%}{%- endblock -%}
         </div>
     </div>
     <div class="col-md-9" role="main">
-        {%- include 'content.twig' -%}
+        {%- block content -%}{%- endblock -%}
     </div>
 </div>
 {% endblock %}
