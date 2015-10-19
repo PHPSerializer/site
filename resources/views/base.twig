@@ -15,12 +15,24 @@
     <script src="/assets/jsonview/jquery.jsonview.js"></script>
     <script src="/assets/highlight/highlight.pack.js"></script>
     <script>
+        $.fn.scrollView = function () {
+            return this.each(function () {
+                $('html, body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1);
+            });
+        }
+
         $(function() {
             $('.json-output').each(function(){
                 $(this).JSONView(JSON.parse($(this).text()));
             });
 
+            if(window.location.hash != "") {
+                $('a[href="' + window.location.hash + '"]').click().scrollView();
+            }
         });
+
         hljs.initHighlightingOnLoad();
     </script>
 

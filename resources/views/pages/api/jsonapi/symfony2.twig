@@ -56,14 +56,17 @@ class PostController extends Controller
      */
     public function getPostAction($postId)
     {
-        $post = $this->get('doctrine.post_repository')->find($postId);
-
+        $postRepository = $this->get('doctrine.post_repository');
         $serializer = $this->get('nil_portugues.serializer.json_api_serializer');
+
+        $post = $postRepository->find($postId);
+        $selfUrl = $this->generateUrl('get_post', ['postId' => $postId], true);
+        $nextUrl = $this->generateUrl('get_post', ['postId' => $postId+1], true);
 
         /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
         $transformer = $serializer->getTransformer();
-        $transformer->setSelfUrl($this->generateUrl('get_post', ['postId' => $postId], true));
-        $transformer->setNextUrl($this->generateUrl('get_post', ['postId' => $postId+1], true));
+        $transformer->setSelfUrl($selfUrl);
+        $transformer->setNextUrl($nextUrl);
 
         return $this->response($serializer->serialize($post));
     }
@@ -115,9 +118,9 @@ class PostController extends Controller
      */
     protected function addHeaders(\Psr\Http\Message\ResponseInterface $response)
     {
-        $response->withAddedHeader('Content-type:', 'application/vnd.api+json; version=2');
-        $response->withAddedHeader('X-API:', 'ACME API: 2');
-        return $response;
+        return $response
+            ->withHeader('Content-type', 'application/vnd.api+json; version=2')
+            ->withHeader('X-API-Version', 'ACME v2');
     }
 
     /**
@@ -128,14 +131,17 @@ class PostController extends Controller
      */
     public function getPostAction($postId)
     {
-        $post = $this->get('doctrine.post_repository')->find($postId);
-
+        $postRepository = $this->get('doctrine.post_repository');
         $serializer = $this->get('nil_portugues.serializer.json_api_serializer');
+
+        $post = $postRepository->find($postId);
+        $selfUrl = $this->generateUrl('get_post', ['postId' => $postId], true);
+        $nextUrl = $this->generateUrl('get_post', ['postId' => $postId+1], true);
 
         /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
         $transformer = $serializer->getTransformer();
-        $transformer->setSelfUrl($this->generateUrl('get_post', ['postId' => $postId], true));
-        $transformer->setNextUrl($this->generateUrl('get_post', ['postId' => $postId+1], true));
+        $transformer->setSelfUrl($selfUrl);
+        $transformer->setNextUrl($nextUrl);
 
         return $this->response($serializer->serialize($post));
     }
