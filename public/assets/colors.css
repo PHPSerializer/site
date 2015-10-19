@@ -162,8 +162,7 @@ h3
 
 .well {
     min-height: 20px;
-    padding: 20px;
-    padding-top:0;
+    padding:0;
     margin-bottom: 20px;
     background-color: transparent;
     border: 0;
