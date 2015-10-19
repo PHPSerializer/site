@@ -24,3 +24,57 @@ class AppKernel extends Kernel
     // ...
 }
 </code></pre>
+
+
+
+<h2>API Responses</h2>
+
+<h3>Doctrine Entity to JSON API Response</h3>
+<p>It is really easy, just get an instance of the JsonApiSerializer from the Service Container and pass the object to its serialize() method. Output will be valid JSON-API.</p>
+
+<p>Here's an example of a Post object being fetched from a Doctrine repository.</p>
+
+<p>Finally, a helper trait, JsonApiResponseTrait is provided to write fully compilant responses wrapping the PSR-7 Response objects provided by the original JSON API Transformer library.</p>
+
+<pre><code class="php">// src/Acme\AppBundleApp\Controller\PostController.php
+
+namespace Acme\AppBundle\Controller;
+
+use NilPortugues\Symfony2\JsonApiBundle\Serializer\JsonApiResponseTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+
+class PostController extends Controller
+{
+    use JsonApiResponseTrait;
+
+    /**
+     * @Route("/post/{postId}", name="get_post")
+     *
+     * @param $postId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getPostAction($postId)
+    {
+        $post = $this->get('doctrine.post_repository')->find($postId);
+
+        $serializer = $this->get('nil_portugues.serializer.json_api_serializer');
+
+        /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
+        $transformer = $serializer->getTransformer();
+        $transformer->setSelfUrl($this->generateUrl('get_post', ['postId' => $postId], true));
+        $transformer->setNextUrl($this->generateUrl('get_post', ['postId' => $postId+1], true));
+
+        return $this->response($serializer->serialize($post));
+    }
+}
+</code></pre>
+
+<h3>JSON API Response</h3>
+
+<pre class="json-headers">HTTP/1.1 200 OK
+Cache-Control: private, max-age=0, must-revalidate
+Content-type: application/vnd.api+json
+</pre>
+
+<pre class="json-output">{% include 'pages/output/api/jsonapi'  %}</pre>

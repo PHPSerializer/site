@@ -206,3 +206,14 @@ a:hover .logo
 {
     font-size:14px
 }
+
+pre.json-headers {
+    padding: 12px 24px;
+    color: rgb(51, 51, 51);
+    font-family: monospace;
+    font-size: 13px;
+}
+
+pre.json-output{
+    padding:24px !important;
+}
