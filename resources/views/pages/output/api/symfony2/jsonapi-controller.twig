@@ -1,0 +1,35 @@
+// src/Acme\AppBundleApp\Controller\PostController.php
+
+namespace Acme\AppBundle\Controller;
+
+use NilPortugues\Symfony2\JsonApiBundle\Serializer\JsonApiResponseTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+
+class PostController extends Controller
+{
+    use JsonApiResponseTrait;
+
+    /**
+     * @Route("/post/{postId}", name="get_post")
+     *
+     * @param $postId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getPostAction($postId)
+    {
+        $postRepository = $this->get('doctrine.post_repository');
+        $serializer = $this->get('nil_portugues.serializer.json_api_serializer');
+
+        $post = $postRepository->find($postId);
+        $selfUrl = $this->generateUrl('get_post', ['postId' => $postId], true);
+        $nextUrl = $this->generateUrl('get_post', ['postId' => $postId+1], true);
+
+        /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
+        $transformer = $serializer->getTransformer();
+        $transformer->setSelfUrl($selfUrl);
+        $transformer->setNextUrl($nextUrl);
+
+        return $this->response($serializer->serialize($post));
+    }
+}

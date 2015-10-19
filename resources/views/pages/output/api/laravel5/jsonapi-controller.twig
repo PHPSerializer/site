@@ -1,0 +1,37 @@
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use NilPortugues\Laravel5\JsonApiSerializer\JsonApiSerializer;
+use NilPortugues\Laravel5\JsonApiSerializer\JsonApiResponseTrait;
+
+class UserController extends \App\Http\Controllers\Controller
+{
+    use JsonApiResponseTrait;
+
+    /**
+     * @param JsonApiSerializer $jsonApiSerializer
+     */
+    public function __construct(JsonApiSerializer $jsonApiSerializer)
+    {
+        $this->serializer = $jsonApiSerializer;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getOneUserAction($id)
+    {
+        $user = User::find($id);        
+        $selfUrl = route('get_user', ['id' => $id]);
+        $nextUrl = route('get_user', ['id' => $id+1]);
+
+        /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
+        $transformer = $serializer->getTransformer();
+        $transformer->setSelfUrl($selfUrl);
+        $transformer->setNextUrl($nextUrl);
+
+        return $this->response($this->serializer->serialize($user));
+    }    
+}

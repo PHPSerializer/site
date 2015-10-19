@@ -1,5 +1,7 @@
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
 <h2>Laravel 5 Installation</h2>
-<p>Use Composer to install the package:</p>
+<p>Open a command console, enter your project directory and execute the following command to download the latest stable version of the package:</p>
 
 <pre><code class="bash">$ php composer require nilportugues/laravel5-json-api</code></pre>
 
@@ -10,33 +12,167 @@
 
 <p>Open up <strong>config/app.php</strong> and add the following line under providers array:</p>
 
-<pre><code class="php">// config/app.php
-
-return [
-  //...
-
-  'providers' => [
-      // Append to the end of the providers array
-      NilPortugues\Laravel5\JsonApiSerializer\Laravel5JsonApiSerializerServiceProvider::class,
-  ],
-
-  //...
-];
-</code></pre>
+<pre><code class="php">{% include 'pages/output/api/laravel5/jsonapi-providers.twig' %}</code></pre>
 
 <hr>
 
 <h2>Register the mapping file</h2>
+<p>Create a <strong>jsonapi.php</strong> file in <strong>config/</strong> directory. This file should return an array returning all the class mappings.</p>
 
-<p>Create a jsonapi.php file in config/ directory. This file should return an array returning all the class mappings.</p>
-
-<pre><code class="php">// config/jsonapi.php
-
-return [
-    //We will be filling this array in a moment
-];
-</code></pre>
+<pre><code class="php">{% include 'pages/output/api/laravel5/jsonapi-mapping-array-empty' %}</code></pre>
 
 <hr>
 
-<h2>Creating a mapping</h2>
+
+<h2>Mapping Eloquent Models </h2>
+
+<p>As an example, we'll create some data models using Eloquent and map them. We will create 3 models: User, Posts and Comments. </p>
+
+<p>These mappings as all Laravel mappings will live in the <strong>database/migrations</strong> directory. Migration files are as follows:</p>
+
+<h3>Eloquent Migrations</h3>
+
+{% set laravel5_user %}<pre><code class="php">{% include 'pages/migrations/laravel5/user' %}</code></pre>{% endset %}
+{% set laravel5_post %}<pre><code class="php">{% include 'pages/migrations/laravel5/posts' %}</code></pre>{% endset %}
+{% set laravel5_comments %}<pre><code class="php">{% include 'pages/migrations/laravel5/comments' %}</code></pre>{% endset %}
+
+
+<div class="row-fluid">
+{{
+    paneled_tabs(
+        {
+            "laravel5_user" : "User",
+            "laravel5_post" : "Post",
+            "laravel5_comments" : "Comments"
+        },
+        {
+
+            "laravel5_user" : laravel5_user,
+            "laravel5_post" : laravel5_post,
+            "laravel5_comments" : laravel5_comments
+        },
+        "laravel5_user",
+        ""
+    )
+}}
+</div>
+
+
+<h3>Relating the Eloquent Model</h3>
+
+<p>Due to the nature of our data model, Users, Post and Comments are all related. I will provide the mappings related to each model in its model.</p>
+
+<p>It's is really important to notice that relationships are limited to a max. of 10 elements. This can be any number, but keep in mind the more records you pull from the database the slower your API will be.</p>
+
+
+
+{% set laravel5_user_model %}<pre><code class="php">{% include 'pages/models/laravel5/user' %}</code></pre>{% endset %}
+{% set laravel5_post_model %}<pre><code class="php">{% include 'pages/models/laravel5/posts' %}</code></pre>{% endset %}
+{% set laravel5_comments_model %}<pre><code class="php">{% include 'pages/models/laravel5/comments' %}</code></pre>{% endset %}
+
+
+<div class="row-fluid">
+    {{
+    paneled_tabs(
+        {
+            "laravel5_user_model" : "User Model",
+            "laravel5_post_model" : "Post Model",
+            "laravel5_comments_model" : "Comments Model"
+        },
+        {
+            "laravel5_user_model" : laravel5_user_model,
+            "laravel5_post_model" : laravel5_post_model,
+            "laravel5_comments_model" : laravel5_comments_model
+        },
+        "laravel5_user_model",
+        ""
+    )
+    }}
+</div>
+
+
+<h3>API Mappings for Eloquent Models</h3>
+
+{% set laravel5_user_mapping %}<pre><code class="php">{% include 'pages/mappings/user' %}</code></pre>{% endset %}
+{% set laravel5_post_mapping %}<pre><code class="php">{% include 'pages/mappings/posts' %}</code></pre>{% endset %}
+{% set laravel5_comments_mapping %}<pre><code class="php">{% include 'pages/mappings/comments' %}</code></pre>{% endset %}
+
+
+<div class="row-fluid">
+    {{
+    paneled_tabs(
+        {
+        "laravel5_user_mapping" : "User Mapping",
+        "laravel5_post_mapping" : "Post Mapping",
+        "laravel5_comments_mapping" : "Comments Mapping"
+        },
+        {
+
+        "laravel5_user_mapping" : laravel5_user_mapping,
+        "laravel5_post_mapping" : laravel5_post_mapping,
+        "laravel5_comments_mapping" : laravel5_comments_mapping
+        },
+        "laravel5_user_mapping",
+        ""
+    )
+    }}
+</div>
+
+<hr>
+
+
+<h2>Eloquent Models to API Responses</h2>
+
+<p>It is really easy, just inject the JsonApiSerializer to the Controller's constructor method and save a reference to be used in all the action methods. For each method just call the serializer and pass in the data and it will handle it.</p>
+
+<p>Finally, a helper trait, JsonApiResponseTrait is provided to write fully compliant responses wrapping the PSR-7 Response objects provided by the original JSON API Transformer library.</p>
+
+<p>Here's an example of a User object being fetched from the database using Eloquent.</p>
+
+
+<pre><code class="php">{% include 'pages/output/api/laravel5/jsonapi-controller' %}</code></pre>
+
+
+<h3>JsonApiResponseTrait</h3>
+
+<p>The JsonApiResponseTrait is provided to return the right headers and HTTP status codes. Methods available:</p>
+
+<pre><code class="php">{% include 'pages/output/api/jsonapi-trait'  %}</code></pre>
+
+
+
+
+
+
+<h3>JSON API Response</h3>
+
+<pre class="json-headers">HTTP/1.1 200 OK
+Cache-Control: private, max-age=0, must-revalidate
+Content-type: application/vnd.api+json
+</pre>
+
+<pre class="json-output">{% include 'pages/output/api/jsonapi_json'  %}</pre>
+
+
+<hr>
+
+
+
+<h2>Custom API Responses Headers</h2>
+
+<h3>Creating a Response Trait</h3>
+<p>It is possible, and a good practice to actually sign your APIs with custom headers, specially for API version. This can be done easily by overwriting the addHeaders method provided JsonApiResponseTrait trait class.</p>
+<p>For instance, let's say we want to sign our API with our company name "Acme" and the current version, "2", using both the standard way of doing it and by adding a custom header, as such: </p>
+
+<pre class="json-headers">HTTP/1.1 200 OK
+Cache-Control: private, max-age=0, must-revalidate
+Content-type: application/vnd.api+json; version=2
+X-API: Acme API v2
+</pre>
+
+<p>This is how it should be done:</p>
+
+<pre><code class="php">{% include 'pages/output/api/laravel5/jsonapi-controller-trait' %}</code></pre>
+
+
+<p>Not too hard, right? </p>

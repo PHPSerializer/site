@@ -1,0 +1,52 @@
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use NilPortugues\Laravel5\JsonApiSerializer\JsonApiSerializer;
+use NilPortugues\Laravel5\JsonApiSerializer\JsonApiResponseTrait;
+
+class UserController extends \App\Http\Controllers\Controller
+{
+    use JsonApiResponseTrait;
+
+    /**
+     * @param JsonApiSerializer $jsonApiSerializer
+     */
+    public function __construct(JsonApiSerializer $jsonApiSerializer)
+    {
+        $this->serializer = $jsonApiSerializer;
+    }
+
+    /**
+     *  This method will override the JsonApiResponseTrait::addHeaders method.
+     *  Extract this method to a parent Controller class to avoid repetition.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    protected function addHeaders(\Psr\Http\Message\ResponseInterface $response)
+    {
+        return $response
+            ->withHeader('Content-type', 'application/vnd.api+json; version=2')
+            ->withHeader('X-API', 'Acme API v2');
+    }
+
+
+    /**
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getOneUserAction($id)
+    {
+        $user = User::find($id);        
+        $selfUrl = route('get_user', ['id' => $id]);
+        $nextUrl = route('get_user', ['id' => $id+1]);
+
+        /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
+        $transformer = $serializer->getTransformer();
+        $transformer->setSelfUrl($selfUrl);
+        $transformer->setNextUrl($nextUrl);
+
+        return $this->response($this->serializer->serialize($user));
+    }    
+}

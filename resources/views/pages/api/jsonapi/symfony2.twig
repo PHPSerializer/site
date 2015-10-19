@@ -27,54 +27,54 @@ class AppKernel extends Kernel
 
 
 
-<h2>API Responses</h2>
 
-<h3>Doctrine Entity to JSON API Response</h3>
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+<h2>Mapping Doctrine Entities</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+<h2>Doctrine Entities to API Responses</h2>
+
 <p>It is really easy, just get an instance of the JsonApiSerializer from the Service Container and pass the object to its serialize() method. Output will be valid JSON-API.</p>
+
+<p>Finally, a helper trait, JsonApiResponseTrait is provided to write fully compliant responses wrapping the PSR-7 Response objects provided by the original JSON API Transformer library.</p>
 
 <p>Here's an example of a Post object being fetched from a Doctrine repository.</p>
 
-<p>Finally, a helper trait, JsonApiResponseTrait is provided to write fully compilant responses wrapping the PSR-7 Response objects provided by the original JSON API Transformer library.</p>
+<pre><code class="php">{% include 'pages/output/api/symfony2/jsonapi-controller'  %}</code></pre>
 
-<pre><code class="php">// src/Acme\AppBundleApp\Controller\PostController.php
 
-namespace Acme\AppBundle\Controller;
+<h3>JsonApiResponseTrait</h3>
+<p>The JsonApiResponseTrait is provided to return the right headers and HTTP status codes. Methods available:</p>
 
-use NilPortugues\Symfony2\JsonApiBundle\Serializer\JsonApiResponseTrait;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Routing\Annotation\Route;
+<pre><code class="php">{% include 'pages/output/api/jsonapi-trait'  %}</code></pre>
 
-class PostController extends Controller
-{
-    use JsonApiResponseTrait;
-
-    /**
-     * @Route("/post/{postId}", name="get_post")
-     *
-     * @param $postId
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getPostAction($postId)
-    {
-        $postRepository = $this->get('doctrine.post_repository');
-        $serializer = $this->get('nil_portugues.serializer.json_api_serializer');
-
-        $post = $postRepository->find($postId);
-        $selfUrl = $this->generateUrl('get_post', ['postId' => $postId], true);
-        $nextUrl = $this->generateUrl('get_post', ['postId' => $postId+1], true);
-
-        /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
-        $transformer = $serializer->getTransformer();
-        $transformer->setSelfUrl($selfUrl);
-        $transformer->setNextUrl($nextUrl);
-
-        return $this->response($serializer->serialize($post));
-    }
-}
-</code></pre>
 
 <h3>JSON API Response</h3>
-
 <pre class="json-headers">HTTP/1.1 200 OK
 Cache-Control: private, max-age=0, must-revalidate
 Content-type: application/vnd.api+json
@@ -82,8 +82,16 @@ Content-type: application/vnd.api+json
 
 <pre class="json-output">{% include 'pages/output/api/jsonapi'  %}</pre>
 
-<h2>Custom API Responses Headers</h2>
 
+
+
+
+<hr>
+
+
+
+
+<h2>Custom API Responses Headers</h2>
 <h3>Creating a Response Trait</h3>
 <p>It is possible, and a good practice to actually sign your APIs with custom headers, specially for API version. This can be done easily by overwriting the addHeaders method provided JsonApiResponseTrait trait class.</p>
 <p>For instance, let's say we want to sign our API with our company name "Acme" and the current version, "2", using both the standard way of doing it and by adding a custom header, as such: </p>
@@ -91,59 +99,12 @@ Content-type: application/vnd.api+json
 <pre class="json-headers">HTTP/1.1 200 OK
 Cache-Control: private, max-age=0, must-revalidate
 Content-type: application/vnd.api+json; version=2
-X-API: Acme API: 2
+X-API: Acme API v2
 </pre>
 
 <p>This is how it should be done:</p>
 
+<pre><code class="php">{% include 'pages/output/api/symfony2/jsonapi-controller-trait.twig' %}</code></pre>
 
-<pre><code class="php">// src/Acme\AppBundleApp\Controller\PostController.php
 
-namespace Acme\AppBundle\Controller;
-
-use NilPortugues\Symfony2\JsonApiBundle\Serializer\JsonApiResponseTrait;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Routing\Annotation\Route;
-
-class PostController extends Controller
-{
-    use JsonApiResponseTrait;
-
-    /**
-     *  This method will override the JsonApiResponseTrait::addHeaders method.
-     *  Extract this method to a parent Controller class to avoid repetition.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    protected function addHeaders(\Psr\Http\Message\ResponseInterface $response)
-    {
-        return $response
-            ->withHeader('Content-type', 'application/vnd.api+json; version=2')
-            ->withHeader('X-API-Version', 'ACME v2');
-    }
-
-    /**
-     * @Route("/post/{postId}", name="get_post")
-     *
-     * @param $postId
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getPostAction($postId)
-    {
-        $postRepository = $this->get('doctrine.post_repository');
-        $serializer = $this->get('nil_portugues.serializer.json_api_serializer');
-
-        $post = $postRepository->find($postId);
-        $selfUrl = $this->generateUrl('get_post', ['postId' => $postId], true);
-        $nextUrl = $this->generateUrl('get_post', ['postId' => $postId+1], true);
-
-        /** @var \NilPortugues\Api\JsonApi\JsonApiTransformer $transformer */
-        $transformer = $serializer->getTransformer();
-        $transformer->setSelfUrl($selfUrl);
-        $transformer->setNextUrl($nextUrl);
-
-        return $this->response($serializer->serialize($post));
-    }
-}
-</code></pre>
+<p>Not too hard, right? </p>
