@@ -1,0 +1,12 @@
+namespace App\Models;
+
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+
+class UserLite extends User
+{
+    /**
+     * This "lite" class has no references as these are done using the
+     * class name which refer to the parent class only.
+     */
+}

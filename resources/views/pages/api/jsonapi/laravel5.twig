@@ -93,9 +93,13 @@
 
 <h3>API Mappings for Eloquent Models</h3>
 
-{% set laravel5_user_mapping %}<pre><code class="php">{% include 'pages/mappings/user' %}</code></pre>{% endset %}
-{% set laravel5_post_mapping %}<pre><code class="php">{% include 'pages/mappings/posts' %}</code></pre>{% endset %}
-{% set laravel5_comments_mapping %}<pre><code class="php">{% include 'pages/mappings/comments' %}</code></pre>{% endset %}
+<p>Mapping classes only have one requirement, implement the <strong>JsonApiMapping Interface</strong>.</p>
+<p>Once implemented these classes all it's left to do is register the mappings in the mapping file at <strong>config/jsonapi.php</strong></p>
+
+<br>
+{% set laravel5_user_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/user' %}</code></pre>{% endset %}
+{% set laravel5_post_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/posts' %}</code></pre>{% endset %}
+{% set laravel5_comments_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/comments' %}</code></pre>{% endset %}
 
 
 <div class="row-fluid">
@@ -117,6 +121,8 @@
     )
     }}
 </div>
+
+<pre><code class="php">{% include 'pages/mappings/laravel5/mapping' %}</code></pre>
 
 <hr>
 
@@ -177,9 +183,58 @@ X-API: Acme API v2
 
 <p>Not too hard, right? </p>
 
-
+<hr>
 
 <h2>API Responses for Eloquent Collections</h2>
 
-<p>[NEED PROPER WRITING] We will need to decide which data to display. We will need to remove some relationships without deleting the previous mappings, therefore we'll create a new Model object, UserLite. Due to the nature of Eloquent, this object won't be referenced by anyone unless we code the relationships, so all related data will be not serialized, which is good.</p>
+<p>Outputting collections is not harder than mapping an Eloquent model. Actually, it just works out of the box. What is important is deciding what how much information we'll be displaying.</p>
 
+<p>For a collection, only main information should be displayed, which translates in removing some relationships data being returned by default.</p>
+
+<p>In order to show, let's say a simplified view, without deleting the previous mappings, a new Model object must be created.</p>
+
+<h3>Example: User and UserLite</h3>
+<p>In this example, having User model, a new and simplified model with less data will be created: UserLite. The UserLite class will extend User.</p>
+
+<p>Due to the nature of Eloquent, this object won't be referenced by anyone unless we code the relationships explicitly, so all related data will be not serialized, which is good. </p>
+
+<p>Here's how this would be done:</p>
+
+<br>
+{% set laravel5_user_lite_mapping %}<pre><code class="php">{% include 'pages/models/laravel5/user_lite' %}</code></pre>{% endset %}
+{% set laravel5_user_lite_transformer %}<pre><code class="php">{% include 'pages/mappings/laravel5/user_lite' %}</code></pre>{% endset %}
+{% set laravel5_lite_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/mapping_with_lite' %}</code></pre>{% endset %}
+
+
+
+<div class="row-fluid">
+    {{
+    paneled_tabs(
+        {
+            "laravel5_user_lite_mapping" : "Eloquent Model",
+            "laravel5_user_lite_transformer" : "API Mapping",
+            "laravel5_lite_mapping" : "config/jsonapi.php",
+        },
+        {
+            "laravel5_user_lite_mapping" : laravel5_user_lite_mapping,
+            "laravel5_user_lite_transformer" : laravel5_user_lite_transformer,
+            "laravel5_lite_mapping" : laravel5_lite_mapping,
+        },
+        "laravel5_user_lite_mapping",
+        ""
+    )
+    }}
+</div>
+
+
+
+
+<h3>JSON API Response</h3>
+
+<pre class="json-headers">HTTP/1.1 200 OK
+Cache-Control: private, max-age=0, must-revalidate
+Content-type: application/vnd.api+json; version=2
+X-API: Acme API v2
+</pre>
+
+<pre class="json-output">{% include 'pages/output/api/jsonapi_json_collection'  %}</pre>

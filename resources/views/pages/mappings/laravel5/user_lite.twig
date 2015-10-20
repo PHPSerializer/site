@@ -1,0 +1,28 @@
+namespace App\Transformers;
+
+class UserLite extends User
+{
+    /**
+     * Returns a string with the full class name, including namespace.
+     *
+     * @return string
+     */
+    public function getClass()
+    {
+        return \App\Models\UserLite::class;
+    }
+
+    /**
+     * Returns an array of properties that will be renamed.
+     * Key is current property from the class. Value is the property's alias name.
+     *
+     * @return array
+     */
+    public function getAliasedProperties()
+    {
+        $aliases = parent::getAliasedProperties();
+        unset($aliases['posts']);
+
+        return $aliases;
+    }
+} 
