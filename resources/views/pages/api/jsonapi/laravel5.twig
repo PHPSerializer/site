@@ -122,6 +122,11 @@
     }}
 </div>
 
+
+<h3>Updating the mapping file</h3>
+
+<p>Just update the contents of the mapping file <strong>app/config.php</strong>.</p>
+
 <pre><code class="php">{% include 'pages/mappings/laravel5/mapping' %}</code></pre>
 
 <hr>
@@ -164,7 +169,7 @@ Content-type: application/vnd.api+json
 
 
 
-<h2>Custom API Responses Headers</h2>
+<h2>Custom API Response Headers</h2>
 
 <h3>Creating a Response Trait</h3>
 <p>It is possible, and a good practice to actually sign your APIs with custom headers, specially for API version. This can be done easily by overwriting the addHeaders method provided JsonApiResponseTrait trait class.</p>
@@ -238,3 +243,29 @@ X-API: Acme API v2
 </pre>
 
 <pre class="json-output">{% include 'pages/output/api/jsonapi_json_collection'  %}</pre>
+
+<hr>
+
+<h2>Filtering with URL query parameters</h2>
+
+<h3>JSON API Query Parameters</h3>
+<p>According to the JSON API specification, it is possible to filter data based on criteria passed in using the Query Parameters.</p>
+<ul>
+    <li>&filter[resource]=field1,field2</li>
+    <li>&include[resource]</li>
+    <li>&include[resource.field1]</li>
+    <li>&sort=field1,-field2</li>
+    <li>&sort=-field1,field2</li>
+    <li>&page[number]</li>
+    <li>&page[limit]</li>
+    <li>&page[cursor]</li>
+    <li>&page[offset]</li>
+    <li>&page[size]</li>
+</ul>
+
+<h3>JSON API Request class</h3>
+<p>Conveniently, the JSON-API Transformer library happens to provide a helper class to handle this: <strong>\NilPortugues\Api\JsonApi\Http\Message\Request(ServerRequestInterface $request)</strong>, implementing the PSR-7 Request Interface.</p>
+
+<pre><code class="php">{% include 'pages/output/api/json-api-request.twig' %}</code></pre>
+
+<h3>Usage example</h3>

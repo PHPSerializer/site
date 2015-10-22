@@ -1,0 +1,17 @@
+namespace NilPortugues\Api\JsonApi\Http\Message;
+
+final class Request
+{
+    public function __construct(ServerRequestInterface $request) { ... }
+    public function getQueryParam($name, $default = null) { ... }
+    public function getIncludedRelationships($baseRelationshipPath) { ... }
+    public function getSortFields() { ... }
+    public function getAttribute($name, $default = null) { ... }
+    public function getSortDirection() { ... }
+    public function getPageNumber() { ... }
+    public function getPageLimit() { ... }
+    public function getPageOffset() { ... }
+    public function getPageSize() { ... }
+    public function getPageCursor() { ... }
+    public function getFilters() { ... }
+}
