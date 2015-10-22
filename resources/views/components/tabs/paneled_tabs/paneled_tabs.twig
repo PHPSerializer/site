@@ -15,7 +15,7 @@
         {% for key, tab in tab_contents %}
             {%  set active = '' %}
             {%  if selected == key %}{%  set active = ' active' %}{% endif %}
-            <div role="tabpanel" class="tab-pane {{- active|raw -}}" id="{{- key -}}">{{ tab|raw }}</div>
+            <div role="tabpanel" class="tab-pane {{- active -}}" id="{{- key -}}">{{ tab|raw }}</div>
         {% endfor %}
         </div>
     </div>
