@@ -57,4 +57,13 @@ class SerializersController extends BaseController
             ]
         );
     }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function otherAction()
+    {
+        return view('pages/transformer/index');
+    }
+
 }

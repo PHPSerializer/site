@@ -1,0 +1,30 @@
+{% extends 'pages/documentation' %}
+
+{%- block title -%}
+    Other Transformers | PHPSerializer.com
+{%- endblock -%}
+
+{%- block content -%}
+<h2 id="array">Object to Array</h2>
+<pre><code>{% include 'pages/transformers/output/array' %}</code></pre>
+
+<hr>
+
+<h2 id="flat-array">Object to Flat Array</h2>
+<pre><code>{% include 'pages/transformers/output/flat_array' %}</code></pre>
+
+<hr>
+
+<h2 id="xml">Object to XML</h2>
+<pre><code>{% include 'pages/transformers/output/xml' %}</code></pre>
+
+<hr>
+
+<h2 id="json">Object to JSON</h2>
+<pre><code>{% include 'pages/transformers/output/json' %}</code></pre>
+
+<hr>
+
+<h2 id="yaml">Object to YAML</h2>
+<pre><code>{% include 'pages/transformers/output/yaml' %}</code></pre>
+{% endblock %}
