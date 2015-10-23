@@ -63,7 +63,7 @@ class SerializersController extends BaseController
      */
     public function otherAction()
     {
-        return view('pages/transformer/index');
+        return view('pages/transformers/index');
     }
 
 }

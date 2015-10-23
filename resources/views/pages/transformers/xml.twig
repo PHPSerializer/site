@@ -1,0 +1,17 @@
+{% extends 'pages/documentation' %}
+
+{%- block title -%}
+Object to XML Transformer | PHPSerializer.com
+{%- endblock -%}
+
+{%- block content -%}
+
+
+
+<h1 id="xml">Object to XML Transformer</h1>
+<h2>Output</h2>
+<pre><code>{% set xmlVar %}{% include 'pages/transformers/output/xml' %}{% endset %}{{ xmlVar|e('html') }}</code></pre>
+
+<hr>
+
+{% endblock %}

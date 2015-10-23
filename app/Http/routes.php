@@ -11,10 +11,32 @@ $app->get(
     ['as' => 'docs', 'uses' => 'Controller@documentationAction']
 );
 
-$app->get(
-    '/docs/transformers',
-    ['as' => 'transformer', 'uses' => '\App\Http\Controllers\SerializersController@otherAction']
-);
+$app->group(['prefix' => 'docs/transformers'], function($app) {
+    $app->get(
+        'array',
+        ['as' => 'transformer', 'uses' => '\App\Http\Controllers\TransformersController@arrayAction']
+    );
+
+    $app->get(
+        'flat-array',
+        ['as' => 'transformer', 'uses' => '\App\Http\Controllers\TransformersController@flatArrayAction']
+    );
+
+    $app->get(
+        'xml',
+        ['as' => 'transformer', 'uses' => '\App\Http\Controllers\TransformersController@xmlAction']
+    );
+
+    $app->get(
+        'json',
+        ['as' => 'transformer', 'uses' => '\App\Http\Controllers\TransformersController@jsonAction']
+    );
+
+    $app->get(
+        'yaml',
+        ['as' => 'transformer', 'uses' => '\App\Http\Controllers\TransformersController@yamlAction']
+    );
+});
 
 $app->group(['prefix' => 'docs/api'], function($app) {
     $app->get(
