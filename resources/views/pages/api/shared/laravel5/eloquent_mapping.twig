@@ -1,0 +1,29 @@
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
+
+
+
+{% set laravel5_user_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/user' %}</code></pre>{% endset %}
+{% set laravel5_post_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/posts' %}</code></pre>{% endset %}
+{% set laravel5_comments_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/comments' %}</code></pre>{% endset %}
+
+
+<div class="row-fluid">
+    {{
+    paneled_tabs(
+    {
+        "laravel5_user_mapping" : "User Mapping",
+        "laravel5_post_mapping" : "Post Mapping",
+        "laravel5_comments_mapping" : "Comments Mapping"
+    },
+    {
+
+        "laravel5_user_mapping" : laravel5_user_mapping,
+        "laravel5_post_mapping" : laravel5_post_mapping,
+        "laravel5_comments_mapping" : laravel5_comments_mapping
+    },
+    "laravel5_user_mapping",
+    ""
+    )
+    }}
+</div>

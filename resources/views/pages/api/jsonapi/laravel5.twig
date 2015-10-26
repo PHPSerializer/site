@@ -23,72 +23,7 @@
 
 <hr>
 
-
-<h2>Mapping Eloquent Models </h2>
-
-<p>As an example, we'll create some data models using Eloquent and map them. We will create 3 models: User, Posts and Comments. </p>
-
-<p>These mappings as all Laravel mappings will live in the <strong>database/migrations</strong> directory. Migration files are as follows:</p>
-
-<h3>Eloquent Migrations</h3>
-
-{% set laravel5_user %}<pre><code class="php">{% include 'pages/migrations/laravel5/user' %}</code></pre>{% endset %}
-{% set laravel5_post %}<pre><code class="php">{% include 'pages/migrations/laravel5/posts' %}</code></pre>{% endset %}
-{% set laravel5_comments %}<pre><code class="php">{% include 'pages/migrations/laravel5/comments' %}</code></pre>{% endset %}
-
-
-<div class="row-fluid">
-{{
-    paneled_tabs(
-        {
-            "laravel5_user" : "User",
-            "laravel5_post" : "Post",
-            "laravel5_comments" : "Comments"
-        },
-        {
-
-            "laravel5_user" : laravel5_user,
-            "laravel5_post" : laravel5_post,
-            "laravel5_comments" : laravel5_comments
-        },
-        "laravel5_user",
-        ""
-    )
-}}
-</div>
-
-
-<h3>Relating the Eloquent Model</h3>
-
-<p>Due to the nature of our data model, Users, Post and Comments are all related. I will provide the mappings related to each model in its model.</p>
-
-<p>It's is really important to notice that relationships are limited to a max. of 10 elements. This can be any number, but keep in mind the more records you pull from the database the slower your API will be.</p>
-
-
-
-{% set laravel5_user_model %}<pre><code class="php">{% include 'pages/models/laravel5/user' %}</code></pre>{% endset %}
-{% set laravel5_post_model %}<pre><code class="php">{% include 'pages/models/laravel5/posts' %}</code></pre>{% endset %}
-{% set laravel5_comments_model %}<pre><code class="php">{% include 'pages/models/laravel5/comments' %}</code></pre>{% endset %}
-
-
-<div class="row-fluid">
-    {{
-    paneled_tabs(
-        {
-            "laravel5_user_model" : "User Model",
-            "laravel5_post_model" : "Post Model",
-            "laravel5_comments_model" : "Comments Model"
-        },
-        {
-            "laravel5_user_model" : laravel5_user_model,
-            "laravel5_post_model" : laravel5_post_model,
-            "laravel5_comments_model" : laravel5_comments_model
-        },
-        "laravel5_user_model",
-        ""
-    )
-    }}
-</div>
+{% include 'pages/api/shared/laravel5/eloquent_models' %}
 
 
 <h3>API Mappings for Eloquent Models</h3>
@@ -97,30 +32,7 @@
 <p>Once implemented these classes all it's left to do is register the mappings in the mapping file at <strong>config/jsonapi.php</strong></p>
 
 <br>
-{% set laravel5_user_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/user' %}</code></pre>{% endset %}
-{% set laravel5_post_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/posts' %}</code></pre>{% endset %}
-{% set laravel5_comments_mapping %}<pre><code class="php">{% include 'pages/mappings/laravel5/comments' %}</code></pre>{% endset %}
-
-
-<div class="row-fluid">
-{{
-    paneled_tabs(
-        {
-        "laravel5_user_mapping" : "User Mapping",
-        "laravel5_post_mapping" : "Post Mapping",
-        "laravel5_comments_mapping" : "Comments Mapping"
-        },
-        {
-
-        "laravel5_user_mapping" : laravel5_user_mapping,
-        "laravel5_post_mapping" : laravel5_post_mapping,
-        "laravel5_comments_mapping" : laravel5_comments_mapping
-        },
-        "laravel5_user_mapping",
-        ""
-    )
-}}
-</div>
+{% include 'pages/api/shared/laravel5/eloquent_mapping' %}
 
 
 <h3>Updating the mapping file</h3>

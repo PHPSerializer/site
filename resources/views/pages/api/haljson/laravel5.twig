@@ -1,3 +1,33 @@
+
 <h2>Laravel 5 Installation</h2>
-<p>Use Composer to install the package:</p>
+<p>Open a command console, enter your project directory and execute the following command to download the latest stable version of the package:</p>
 <pre><code class="bash">$ php composer require nilportugues/laravel5-haljson</code></pre>
+
+
+<h2>Configuration</h2>
+<h3>Add the package to the Service Provider</h3>
+
+<p>Open up <strong>config/app.php</strong> and add the following line under providers array:</p>
+
+<pre><code class="php">{% include 'pages/output/api/laravel5/haljson-providers.twig' %}</code></pre>
+
+<hr>
+
+<h2>Register the mapping file</h2>
+<p>Create a <strong>haljson.php</strong> file in <strong>config/</strong> directory. This file should return an array returning all the class mappings.</p>
+
+<pre><code class="php">{% include 'pages/output/api/laravel5/haljson-mapping-array-empty' %}</code></pre>
+
+<hr>
+
+
+{% include 'pages/api/shared/laravel5/eloquent_models' %}
+
+
+<h3>API Mappings for Eloquent Models</h3>
+
+<p>Mapping classes only have one requirement, implement the <strong>HalJsonMapping Interface</strong>.</p>
+<p>Once implemented these classes all it's left to do is register the mappings in the mapping file at <strong>config/haljson.php</strong></p>
+
+<br>
+{% include 'pages/api/shared/laravel5/eloquent_mapping' %}
