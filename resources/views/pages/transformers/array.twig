@@ -6,10 +6,15 @@ Object to Array Transformer | PHPSerializer.com
 
 {%- block content -%}
 <h1 id="array">Object to Array Transformer</h1>
-<h2>Output</h2>
+<h3>Serialize</h3>
 <p>Object to Array transformation is just as simple as passing in the ArrayTransformer as a serialization strategy to the DeepCopySerializer just as follows:</p>
-
 <pre><code class="php">{% include 'pages/transformers/array_transformer' %}</code></pre>
+
+{% include 'pages/transformers/unserialize' %}
+
+<hr>
+<h2>Output</h2>
+
 
 <h3>Sample object</h3>
 Given the following sample code, passing it through the serializer will output an Array with the format shown below.

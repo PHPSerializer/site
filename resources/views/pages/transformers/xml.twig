@@ -5,11 +5,12 @@ Object to XML Transformer | PHPSerializer.com
 {%- endblock -%}
 
 {%- block content -%}
+    <h3>Serialize</h3>
 <p>Object to XML transformation is just as simple as passing in the XmlTransformer as a serialization strategy to the DeepCopySerializer just as follows:</p>
 
 <pre><code class="php">{% include 'pages/transformers/xml_transformer' %}</code></pre>
 
-
+    {% include 'pages/transformers/unserialize' %}
 <hr>
 
 <h2>Output</h2>

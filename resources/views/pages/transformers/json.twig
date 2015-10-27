@@ -7,7 +7,9 @@
 {%- block content -%}
 
 
+
 <h1 id="json">Object to JSON Transformer</h1>
+<h3>Serialize</h3>
 <p>Object to JSON transformation is just as simple as passing in the JsonTransformer as a serialization strategy to the DeepCopySerializer just as follows:</p>
 
 <pre><code class="php">{% include 'pages/transformers/json_transformer' %}</code></pre>
@@ -18,6 +20,8 @@
     <li>It will not hide properties.</li>
     <li>It is not suited to be used for API generation. Use the API Transformer counter-part instead.</li>
 </ul>
+
+{% include 'pages/transformers/unserialize' %}
 
 <hr>
 
