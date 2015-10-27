@@ -1,0 +1,5 @@
+use NilPortugues\Serializer\DeepCopySerializer;
+use NilPortugues\Serializer\Transformer\FlatArrayTransformer;
+
+$serializer = new DeepCopySerializer(new FlatArrayTransformer());
+$serializer->serialize($object);

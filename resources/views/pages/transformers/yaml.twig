@@ -7,8 +7,21 @@
 {%- block content -%}
 
 
-    <h1 id="yaml">Object to YAML Transformer</h1>
+<h1 id="yaml">Object to YAML Transformer</h1>
 
-    <h2>Output</h2>
-    <pre><code>{% include 'pages/transformers/output/yaml' %}</code></pre>
+<h2>Usage</h2>
+
+<p>Object to YAML transformation is just as simple as passing in the YamlTransformer as a serialization strategy to the DeepCopySerializer just as follows:</p>
+
+<pre><code class="php">{% include 'pages/transformers/yaml_transformer' %}</code></pre>
+
+<hr>
+
+<h2>Output</h2>
+<h3>Sample object</h3>
+Given the following sample code, passing it through the serializer will output a YAML with the format shown below.
+<pre><code class="php">{% include 'pages/transformers/class_example' %}</code></pre>
+
+<h3>Sample Output</h3>
+<pre><code>{% include 'pages/transformers/output/yaml' %}</code></pre>
 {% endblock %}

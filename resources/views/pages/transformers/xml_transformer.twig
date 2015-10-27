@@ -1,0 +1,5 @@
+use NilPortugues\Serializer\DeepCopySerializer;
+use NilPortugues\Serializer\Transformer\XmlTransformer;
+
+$serializer = new DeepCopySerializer(new XmlTransformer());
+$serializer->serialize($object);

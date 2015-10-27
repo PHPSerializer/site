@@ -1,0 +1,5 @@
+use NilPortugues\Serializer\DeepCopySerializer;
+use NilPortugues\Serializer\Transformer\JsonTransformer;
+
+$serializer = new DeepCopySerializer(new JsonTransformer());
+$serializer->serialize($object);

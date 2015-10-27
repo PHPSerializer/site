@@ -7,7 +7,16 @@
 {%- block content -%}
 
 <h1 id="flat-array">Object to Flat Array Transformer</h1>
+<p>Object to Flat Array transformation is just as simple as passing in the FlatArrayTransformer as a serialization strategy to the DeepCopySerializer just as follows:</p>
+
+<pre><code class="php">{% include 'pages/transformers/flat_array_transformer' %}</code></pre>
+
 <h2>Output</h2>
+<h3>Sample object</h3>
+Given the following sample code, passing it through the serializer will output a Flat Array with the format shown below.
+<pre><code class="php">{% include 'pages/transformers/class_example' %}</code></pre>
+
+<h3>Sample Output</h3>
 <pre><code>{% include 'pages/transformers/output/flat_array' %}</code></pre>
 
 {% endblock %}

@@ -8,7 +8,24 @@
 
 
 <h1 id="json">Object to JSON Transformer</h1>
-<h2>Output</h2>
-<pre><code>{% include 'pages/transformers/output/json' %}</code></pre>
+<p>Object to JSON transformation is just as simple as passing in the JsonTransformer as a serialization strategy to the DeepCopySerializer just as follows:</p>
 
+<pre><code class="php">{% include 'pages/transformers/json_transformer' %}</code></pre>
+
+<p>This transformer will <strong>not</strong> perform the following transformations:</p>
+<ul>
+    <li>It will not change property names to under_score.</li>
+    <li>It will not hide properties.</li>
+    <li>It is not suited to be used for API generation. Use the API Transformer counter-part instead.</li>
+</ul>
+
+<hr>
+
+<h2>Output</h2>
+<h3>Sample object</h3>
+Given the following sample code, passing it through the serializer will output a JSON with the format shown below.
+<pre><code class="php">{% include 'pages/transformers/class_example' %}</code></pre>
+
+<h3>Sample Output</h3>
+<pre><code>{% include 'pages/transformers/output/json' %}</code></pre>
 {% endblock %}
