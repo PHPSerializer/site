@@ -1,0 +1,29 @@
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
+
+<h3>XML Serializer</h3>
+<p>In order to generate a serializable output using XML the XML Strategy must be passed in to the Serializer class.</p>
+
+<pre><code class="php">{% include 'pages/serializers/code/xml' %}</code></pre>
+
+<p>Data is always outputted with the less amount of characters possible.</p>
+
+<p>For the sake of comprehension and examination, we provide the original raw output and a formatted version for you to examine:</p>
+<br>
+{% set raw_xml %}<pre><code class="xml">{% set xml %}{% include 'pages/serializers/output/xml' %}{% endset %}{{ xml|e('html') }}</code></pre>{% endset %}
+{% set formatted_xml %}<pre><code class="xml">{% set xml %}{% include 'pages/serializers/output/xml_formatted' %}{% endset %}{{ xml|e('html') }}</code></pre>{% endset %}
+
+{{
+    paneled_tabs(
+        {
+            "raw_xml" : "Raw Output",
+            "formatted_xml" : "Formatted Output"
+        },
+        {
+            "raw_xml" : raw_xml,
+            "formatted_xml": formatted_xml
+        },
+        "raw_xml",
+        ""
+    )
+}}

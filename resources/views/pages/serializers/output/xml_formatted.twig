@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\Post</np_serializer_type>
+    <postId>
+        <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\PostId</np_serializer_type>
+        <postId>
+            <np_serializer_scalar>integer</np_serializer_scalar>
+            <np_serializer_value>9</np_serializer_value>
+        </postId>
+    </postId>
+    <title>
+        <np_serializer_scalar>string</np_serializer_scalar>
+        <np_serializer_value>Hello World</np_serializer_value>
+    </title>
+    <content>
+        <np_serializer_scalar>string</np_serializer_scalar>
+        <np_serializer_value>Your first post</np_serializer_value>
+    </content>
+    <author>
+        <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\User</np_serializer_type>
+        <userId>
+            <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\UserId</np_serializer_type>
+            <userId>
+                <np_serializer_scalar>integer</np_serializer_scalar>
+                <np_serializer_value>1</np_serializer_value>
+            </userId>
+        </userId>
+        <name>
+            <np_serializer_scalar>string</np_serializer_scalar>
+            <np_serializer_value>Post Author</np_serializer_value>
+        </name>
+    </author>
+    <comments>
+        <np_serializer_map>array</np_serializer_map>
+        <np_serializer_value>
+            <np_serializer_element_integer_0>
+                <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\Comment</np_serializer_type>
+                <commentId>
+                    <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\CommentId
+                    </np_serializer_type>
+                    <commentId>
+                        <np_serializer_scalar>integer</np_serializer_scalar>
+                        <np_serializer_value>1000</np_serializer_value>
+                    </commentId>
+                </commentId>
+                <dates>
+                    <np_serializer_map>array</np_serializer_map>
+                    <np_serializer_value>
+                        <created_at>
+                            <np_serializer_scalar>string</np_serializer_scalar>
+                            <np_serializer_value>2015-07-18T12:13:00+02:00</np_serializer_value>
+                        </created_at>
+                        <accepted_at>
+                            <np_serializer_scalar>string</np_serializer_scalar>
+                            <np_serializer_value>2015-07-19T00:00:00+02:00</np_serializer_value>
+                        </accepted_at>
+                    </np_serializer_value>
+                </dates>
+                <comment>
+                    <np_serializer_scalar>string</np_serializer_scalar>
+                    <np_serializer_value>Have no fear, sers, your king is safe.</np_serializer_value>
+                </comment>
+                <user>
+                    <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\User</np_serializer_type>
+                    <userId>
+                        <np_serializer_type>NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\UserId
+                        </np_serializer_type>
+                        <userId>
+                            <np_serializer_scalar>integer</np_serializer_scalar>
+                            <np_serializer_value>2</np_serializer_value>
+                        </userId>
+                    </userId>
+                    <name>
+                        <np_serializer_scalar>string</np_serializer_scalar>
+                        <np_serializer_value>Barristan Selmy</np_serializer_value>
+                    </name>
+                </user>
+            </np_serializer_element_integer_0>
+        </np_serializer_value>
+    </comments>
+</data>

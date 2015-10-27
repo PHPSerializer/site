@@ -1,9 +1,73 @@
 {% extends 'pages/documentation' %}
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
 
 {%- block title -%}
-    API Transformers | PHPSerializer.com
+    Serializer | PHPSerializer.com
 {%- endblock -%}
 
 {%- block content -%}
+<h1 id="array">Serializer</h1>
+<h2>Serialize</h2>
+<p>For the serializer to work, all you need to do is pass in a PHP Object to the serializer and a Strategy to implement its string representation.</p>
+
+<p>Examples of given a sample class and its output depending on which serialization strategy is chosen.</p>
+<br>
+
+
+{% set json %}<div class="padding:0 24px">{% include 'pages/serializers/json' %}</div>{% endset %}
+{% set xml %}<div class="padding:0 24px">{% include 'pages/serializers/xml' %}</div>{% endset %}
+{% set yaml %}<div class="padding:0 24px">{% include 'pages/serializers/yaml' %}</div>{% endset %}
+
+    {{
+        paneled_tabs(
+        {
+            "json" : "JSON Serializer",
+            "xml" : "XML Serializer",
+            "yaml" : "YAML Serializer"
+        },
+        {
+            "json" : json,
+            "xml": xml,
+            "yaml": yaml
+        },
+        "json",
+        ""
+        )
+    }}
+
+
+<hr>
+<h2>Custom serialization</h2>
+
+<hr>
+
+<h2>Unserialize</h2>
+
+<p>Depending on the format chosen to serialize, the according Serializer is required to unserialize data.</p>
+
+<p>Just pass in the serialized object to the unserialize function.</p>
+<br>
+
+
+    {% set json_unserialize %}<pre><code class="php">{% include 'pages/serializers/code/json_unserialize' %}</code></pre>{% endset %}
+    {% set xml_unserialize %}<pre><code class="php">{% include 'pages/serializers/code/xml_unserialize' %}</code></pre>{% endset %}
+    {% set yaml_unserialize %}<pre><code class="php">{% include 'pages/serializers/code/yaml_unserialize' %}</code></pre>{% endset %}
+
+    {{
+    paneled_tabs(
+    {
+        "json_unserialize" : "JSON",
+        "xml_unserialize" : "XML",
+        "yaml_unserialize" : "YAML"
+    },
+    {
+        "json_unserialize" : json_unserialize,
+        "xml_unserialize": xml_unserialize,
+        "yaml_unserialize": yaml_unserialize
+    },
+    "json_unserialize",
+    ""
+    )
+    }}
 
 {% endblock %}

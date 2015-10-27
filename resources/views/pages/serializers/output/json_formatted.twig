@@ -1,0 +1,78 @@
+{
+    "@type": "Acme\\\\Domain\\\\Dummy\\\\Post",
+    "postId": {
+        "@type": "Acme\\\\Domain\\\\Dummy\\\\ValueObject\\\\PostId",
+        "postId": {
+            "@scalar": "integer",
+            "@value": 14
+        }
+    },
+    "title": {
+        "@scalar": "string",
+        "@value": "Hello World"
+    },
+    "content": {
+        "@scalar": "string",
+        "@value": "Your first post"
+    },
+    "author": {
+        "@type": "Acme\\\\Domain\\\\Dummy\\\\User",
+        "userId": {
+            "@type": "Acme\\\\Domain\\\\Dummy\\\\ValueObject\\\\UserId",
+            "userId": {
+                "@scalar": "integer",
+                "@value": 1
+            }
+        },
+        "name": {
+            "@scalar": "string",
+            "@value": "Post Author"
+        }
+    },
+    "comments": {
+        "@map": "array",
+        "@value": [
+            {
+                "@type": "Acme\\\\Domain\\\\Dummy\\\\Comment",
+                "commentId": {
+                    "@type": "Acme\\\\Domain\\\\Dummy\\\\ValueObject\\\\CommentId",
+                    "commentId": {
+                        "@scalar": "integer",
+                        "@value": 1000
+                    }
+                },
+                "dates": {
+                    "@map": "array",
+                    "@value": {
+                        "created_at": {
+                            "@scalar": "string",
+                            "@value": "2015-07-18T12:13:00+00:00"
+                        },
+                        "accepted_at": {
+                            "@scalar": "string",
+                            "@value": "2015-07-19T00:00:00+00:00"
+                        }
+                    }
+                },
+                "comment": {
+                    "@scalar": "string",
+                    "@value": "Have no fear, sers, your king is safe."
+                },
+                "user": {
+                    "@type": "Acme\\\\Domain\\\\Dummy\\\\User",
+                    "userId": {
+                        "@type": "Acme\\\\Domain\\\\Dummy\\\\ValueObject\\\\UserId",
+                        "userId": {
+                            "@scalar": "integer",
+                            "@value": 2
+                        }
+                    },
+                    "name": {
+                        "@scalar": "string",
+                        "@value": "Barristan Selmy"
+                    }
+                }
+            }
+        ]
+    }
+}

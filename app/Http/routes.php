@@ -1,6 +1,5 @@
 <?php
 
-
 $app->get(
     '/',
     ['as' => 'homepage', 'uses' => 'Controller@indexAction']
@@ -11,7 +10,12 @@ $app->get(
     ['as' => 'docs', 'uses' => 'Controller@documentationAction']
 );
 
-$app->group(['prefix' => 'docs/transformers'], function($app) {
+$app->get(
+    '/docs/serializers',
+    ['as' => 'docs', 'uses' => 'SerializersController@indexAction']
+);
+
+$app->group(['prefix' => 'docs/transformers'], function(\Laravel\Lumen\Application $app) {
     $app->get(
         'array',
         ['as' => 'transformer', 'uses' => '\App\Http\Controllers\TransformersController@arrayAction']
@@ -38,7 +42,7 @@ $app->group(['prefix' => 'docs/transformers'], function($app) {
     );
 });
 
-$app->group(['prefix' => 'docs/api'], function($app) {
+$app->group(['prefix' => 'docs/api'], function(\Laravel\Lumen\Application $app) {
     $app->get(
         'hal-json',
         ['as' => 'api_hal_json', 'uses' => '\App\Http\Controllers\ApiTransformersController@haljsonAction']
@@ -60,25 +64,3 @@ $app->group(['prefix' => 'docs/api'], function($app) {
     );
 });
 
-
-$app->group(['prefix' => 'docs/serializers'], function($app) {
-
-
-    $app->get(
-        'json',
-        ['as' => 'serializers_homepage', 'uses' => '\App\Http\Controllers\SerializersController@jsonAction']
-    );
-
-
-    $app->get(
-        'xml',
-        ['as' => 'serializers_homepage', 'uses' => '\App\Http\Controllers\SerializersController@xmlAction']
-    );
-
-
-    $app->get(
-        'yaml',
-        ['as' => 'serializers_yaml', 'uses' => '\App\Http\Controllers\SerializersController@yamlAction']
-    );
-
-});

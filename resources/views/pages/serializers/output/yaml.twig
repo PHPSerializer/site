@@ -1,0 +1,17 @@
+'@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\Post
+postId:
+    '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\PostId
+    postId: { '@scalar': integer, '@value': 9 }
+title:
+    '@scalar': string
+    '@value': 'Hello World'
+content:
+    '@scalar': string
+    '@value': 'Your first post'
+author:
+    '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\User
+    userId: { '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\UserId, userId: { '@scalar': integer, '@value': 1 } }
+    name: { '@scalar': string, '@value': 'Post Author' }
+comments:
+    '@map': array
+    '@value': [{ '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\Comment, commentId: { '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\CommentId, commentId: { '@scalar': integer, '@value': 1000 } }, dates: { '@map': array, '@value': { created_at: { '@scalar': string, '@value': '2015-07-18T12:13:00+02:00' }, accepted_at: { '@scalar': string, '@value': '2015-07-19T00:00:00+02:00' } } }, comment: { '@scalar': string, '@value': 'Have no fear, sers, your king is safe.' }, user: { '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\User, userId: { '@type': NilPortugues\Test\Serializer\Dummy\ComplexObject\ValueObject\UserId, userId: { '@scalar': integer, '@value': 2 } }, name: { '@scalar': string, '@value': 'Barristan Selmy' } } }]

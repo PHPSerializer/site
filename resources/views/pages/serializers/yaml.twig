@@ -1,0 +1,25 @@
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
+
+<h3>YAML Serializer</h3>
+<p>In order to generate a serializable output using YAML the YAML Strategy must be passed in to the Serializer class.</p>
+
+<pre><code class="php">{% include 'pages/serializers/code/yaml' %}</code></pre>
+
+<p>Data is always outputted with the less amount of characters possible.</p>
+
+<br>
+{% set raw_yaml %}<pre><code class="yaml">{% set yaml %}{% include 'pages/serializers/output/yaml' %}{% endset %}{{ yaml|e('html') }}</code></pre>{% endset %}
+
+{{
+    paneled_tabs(
+        {
+            "raw_yaml" : "Raw Output",
+        },
+        {
+            "raw_yaml" : raw_yaml,
+        },
+        "raw_yaml",
+        ""
+    )
+}}
