@@ -21,7 +21,7 @@ class LatestProjectReleasesQueryHandler
     }
     /**
      * @param LatestProjectReleasesQuery $query
-     * @return array
+     * @return \NilPortugues\PhpSerializer\Domain\Github\RepoLatest[]
      */
     public function handle(LatestProjectReleasesQuery $query)
     {
@@ -30,6 +30,6 @@ class LatestProjectReleasesQueryHandler
             $repositories[] = RepoId::fromString($repository);
         }
 
-        return $this->repoRepository->findMany($repositories);
+        return $this->repoRepository->findLatestReleases($repositories);
     }
 }

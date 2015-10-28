@@ -4,6 +4,7 @@ namespace NilPortugues\PhpSerializer\Infrastructure\Repository;
 
 use NilPortugues\PhpSerializer\Domain\Github\Repo;
 use NilPortugues\PhpSerializer\Domain\Github\RepoId;
+use NilPortugues\PhpSerializer\Domain\Github\RepoLatest;
 use NilPortugues\PhpSerializer\Domain\Github\Repository;
 
 /**
@@ -27,11 +28,20 @@ class GitRepoRepository implements Repository
 
     /**
      * @param RepoId $repoId
-     * @return Repo
+     * @return RepoLatest
      */
     public function findLatestRelease(RepoId $repoId)
     {
         return $this->api->findLatestRelease($repoId);
+    }
+
+    /**
+     * @param RepoId[] $repoIds
+     * @return RepoLatest[]
+     */
+    public function findLatestReleases(array $repoIds)
+    {
+        return $this->api->findLatestReleases($repoIds);
     }
 
     /**

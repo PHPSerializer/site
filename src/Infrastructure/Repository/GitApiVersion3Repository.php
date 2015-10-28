@@ -51,6 +51,20 @@ class GitApiVersion3Repository implements Repository
     }
 
     /**
+     * @param RepoId[] $repoIds
+     * @return RepoLatest[]
+     */
+    public function findLatestReleases(array $repoIds)
+    {
+        $collection = [];
+        foreach ($repoIds as $repoId) {
+            $collection[] = $this->findLatestRelease($repoId);
+        }
+
+        return $collection;
+    }
+
+    /**
      * @param string $key
      * @param RepoId $repoId
      * @return string
