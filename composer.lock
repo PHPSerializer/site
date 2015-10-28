@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6bcb7f34f161a372cd19bca54fba3a11",
-    "content-hash": "fe76dabca298a025d746407d3295fe85",
+    "hash": "377a64bc12de80060dcd2a6b34ff4563",
+    "content-hash": "1163151493ca008560c40a98565dd2ae",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -1531,6 +1531,130 @@
             "time": "2015-02-26 15:33:07"
         },
         {
+            "name": "nilportugues/cache",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nilportugues/cache.git",
+                "reference": "dbdc6f442beb0a4af254436a2117ae9e78b431c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nilportugues/cache/zipball/dbdc6f442beb0a4af254436a2117ae9e78b431c7",
+                "reference": "dbdc6f442beb0a4af254436a2117ae9e78b431c7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "predis/predis": "~1.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "dev-master",
+                "fiunchinho/phpunit-randomizer": "1.0.*@dev",
+                "phpunit/phpunit": "~4.2"
+            },
+            "suggest": {
+                "ext-curl": "Native curl support for php.",
+                "ext-memcached": "Native memcached support for php.",
+                "ext-redis": "Native redis support for php."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NilPortugues\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nil Portugués",
+                    "email": "contact@nilportugues.com"
+                }
+            ],
+            "description": "Cache layer for PHP applications using the on Chain of responsability pattern",
+            "homepage": "http://nilportugues.com",
+            "keywords": [
+                "cache",
+                "chainable",
+                "delegation",
+                "elasticsearch",
+                "file",
+                "filesystem",
+                "memcached",
+                "mongo",
+                "mongodb",
+                "mysql",
+                "nil portugues",
+                "nilportugues",
+                "performance",
+                "predis",
+                "redis",
+                "sphinx",
+                "sphinxql",
+                "sql",
+                "system"
+            ],
+            "time": "2015-10-28 00:05:49"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete PHP client library for Redis",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2015-07-30 18:34:15"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -2444,7 +2568,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/03a4316be7956507763a7ff36ae14a26cba1b918",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/955c9000f7460a686cf2a861780458a175d268a0",
                 "reference": "03a4316be7956507763a7ff36ae14a26cba1b918",
                 "shasum": ""
             },

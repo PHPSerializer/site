@@ -10,6 +10,10 @@
 <h2>Serialize</h2>
 <p>For the serializer to work, all you need to do is pass in a PHP Object to the serializer and a Strategy to implement its string representation.</p>
 
+<p>For instance, given the following object, lets see how can it be serialize using several strategies and its output:</p>
+
+<pre><code class="php">{% include 'pages/serializers/code/class_example' %}</code></pre>
+
 <p>Examples of given a sample class and its output depending on which serialization strategy is chosen.</p>
 <br>
 
@@ -36,11 +40,8 @@
     }}
 
 
-<hr>
-<h2>Custom serialization</h2>
 
-<hr>
-
+    <hr style="margin-top: 0">
 <h2>Unserialize</h2>
 
 <p>Depending on the format chosen to serialize, the according Serializer is required to unserialize data.</p>
@@ -70,4 +71,9 @@
     )
     }}
 
+
+
+
+    <hr>
+<h2>Custom Serialization</h2>
 {% endblock %}

@@ -2,12 +2,17 @@
 
 $app->get(
     '/',
-    ['as' => 'homepage', 'uses' => 'Controller@indexAction']
+    ['as' => 'homepage', 'uses' => 'HomeController@indexAction']
 );
 
 $app->get(
     '/docs',
-    ['as' => 'docs', 'uses' => 'Controller@documentationAction']
+    ['as' => 'docs', 'uses' => 'HomeController@documentationAction']
+);
+
+$app->get(
+    '/download',
+    ['as' => 'docs', 'uses' => 'HomeController@downloadAction']
 );
 
 $app->get(

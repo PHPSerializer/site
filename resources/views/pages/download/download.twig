@@ -1,0 +1,76 @@
+{% extends 'docs' %}
+{% from 'components/tabs/paneled_tabs/paneled_tabs' import paneled_tabs as paneled_tabs %}
+
+{% block title %}
+    Download | PHPSerializer.com
+{% endblock %}
+
+
+
+{%- block sidebar -%}
+    {%- include 'pages/download/download_sidebar'-%}
+{%- endblock -%}
+
+
+{%- block content -%}
+<h1>Download</h1>
+
+<p>Download methods available are Composer or direct download as a zip or tarball file.</p>
+<br>
+
+
+<h2 id="stable">Current Stable</h2>
+
+
+{% set composer_current %}{% endset %}
+{% set zip_current %}{% endset %}
+{% set tarball_current %}{% endset %}
+
+<div class="row-fluid">
+{{
+    paneled_tabs(
+    {
+        "composer_current" : "Composer",
+        "zip_current" : "Zip file",
+        "tarball_current" : "Tarball file"
+    },
+    {
+        "composer_current" : composer_current,
+        "zip_current" : zip_current,
+        "tarball_current" : tarball_current
+    },
+    "composer_current",
+    ""
+    )
+}}
+</div>
+
+<h2 id="latest">Development</h2>
+
+
+{% set composer_latest %}{% include 'pages/download/download_composer_latest' %}{% endset %}
+{% set zip_latest %}{% include 'pages/download/download_zip_latest' %}{% endset %}
+{% set tarball_latest %}{% endset %}
+
+<div class="row-fluid">
+{{
+    paneled_tabs(
+        {
+            "composer_latest" : "Composer",
+            "zip_latest" : "Zip file",
+            "tarball_latest" : "Tarball file"
+        },
+        {
+            "composer_latest" : composer_latest,
+            "zip_latest" : zip_latest,
+            "tarball_latest" : tarball_latest
+        },
+        "composer_latest",
+        ""
+        )
+}}
+</div>
+
+<hr>
+
+{% endblock %}

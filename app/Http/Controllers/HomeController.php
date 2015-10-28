@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class Controller extends BaseController
+class HomeController extends BaseController
 {
     /**
      * @return \Illuminate\View\View
@@ -24,6 +24,20 @@ class Controller extends BaseController
             'pages/documentation',
             [
                 'navbar' => 'docs'
+            ]
+        );
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function downloadAction()
+    {
+        return view
+        (
+            'pages/download/download',
+            [
+                'navbar' => 'download'
             ]
         );
     }
