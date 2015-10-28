@@ -26,46 +26,83 @@ class GitApiVersion3Repository implements Repository
     {
         $this->cache = $cacheRepository;
     }
+
     /**
      * @param RepoId $repoId
-     * @return Repo
+     * @return RepoLatest
      */
     public function findLatestRelease(RepoId $repoId)
     {
-        $response = file_get_contents(sprintf(self::LATEST_RELEASE, $repoId->vendor(), $repoId->repository()));
-        $response = json_decode($response);
+        $hash = $this->buildHashKey(__METHOD__, $repoId);
+        $data = $this->cache->get($hash);
 
-        return new RepoLatest(
-            $response->tag_name,
-            $response->tar_ball,
-            $response->zip_file,
-            $response->published_at
+        if (null !== $data) {
+            return $data;
+        }
+
+        $response = $this->apiRequest(self::LATEST_RELEASE, $repoId);
+
+        $latest = new RepoLatest(
+            $response->tag_name, $response->tar_ball, $response->zip_file, $response->published_at
         );
+        $this->cache->set($hash, $latest);
+
+        return $latest;
     }
 
     /**
+     * @param string $key
+     * @param RepoId $repoId
+     * @return string
+     */
+    private function buildHashKey($key, RepoId $repoId)
+    {
+        return sprintf("%s:%s", $key, $repoId->repositoryPath());
+    }
+
+    /**
+     * @param $url
      * @param RepoId $repoId
      * @return mixed
      */
-    public function find(RepoId $repoId)
+    private function apiRequest($url, RepoId $repoId)
     {
-        $response = file_get_contents(sprintf(self::MASTER_BRANCH, $repoId->vendor(), $repoId->repository()));
-        $response = json_decode($response);
-
-        return new Repo(
-            $response->full_name,
-            $response->git_url,
-            $response->svn_url,
-            $response->updated_at
-        );
+        $response = file_get_contents(sprintf($url, $repoId->vendor(), $repoId->repository()));
+        return json_decode($response);
     }
 
     /**
      * @param RepoId[] $repoIds
-     * @return mixed
+     * @return Repo[]
      */
     public function findMany(array $repoIds)
     {
-        // TODO: Implement findMany() method.
+        $collection = [];
+        foreach ($repoIds as $repoId) {
+            $collection[] = $this->find($repoId);
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @param RepoId $repoId
+     * @return Repo
+     */
+    public function find(RepoId $repoId)
+    {
+        $hash = $this->buildHashKey(__METHOD__, $repoId);
+        $data = $this->cache->get($hash);
+
+        if (null !== $data) {
+            return $data;
+        }
+
+        $response = $this->apiRequest(self::MASTER_BRANCH, $repoId);
+
+        $master = new Repo($response->full_name, $response->git_url, $response->svn_url, $response->updated_at);
+        $this->cache->set($hash, $master);
+
+        return $master;
     }
 }
